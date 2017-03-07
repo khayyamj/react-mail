@@ -1,4 +1,7 @@
 import React from "react";
+import { getMessages } from './../services/messageService';
+import MessageLink from './MessageLink';
+import { Link } from 'react-router';
 
 export default class Inbox extends React.Component {
 	constructor( props ) {
@@ -6,17 +9,30 @@ export default class Inbox extends React.Component {
 
 		this.state = { messages: [] };
 	}
+	componentWillMount(){
+		this.setState( { messages: getMessages() });
+	}
 
 	render() {
 		const styles = this.getStyles();
+		const messages = this.state.messages.map( message => {
+			return (
+				<Link to={`/inbox/${message._id}`} key={message.key}>
+					<MessageLink
+						name={message.name}
+						email={message.email}
+						key={message.key} />
+				</Link>
+			)
+		});
 
 		return (
 			<div style={ styles.wrapper }>
 				<div style={ styles.messageLinkWrapper }>
-
+					{ messages }
 				</div>
 				<div style={ styles.activeMessageWrapper }>
-
+					{ this.props.children }
 				</div>
 			</div>
 		);

@@ -2,9 +2,9 @@
   "name": "react-inbox",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./services/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "keywords": [],
   "author": "Ryan Walsh <ryan@thehatrack.net> (https://twitter.com/_rtwalsh)",
